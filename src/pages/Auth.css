@@ -1,0 +1,64 @@
+.auth-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.auth-left {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  padding: 60px 56px;
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 32px;
+  position: relative; overflow: hidden;
+}
+.auth-left::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.15) 0%, transparent 60%);
+}
+.auth-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 20px; font-weight: 700;
+  color: var(--text); position: relative;
+}
+.auth-headline {
+  font-size: 42px; font-weight: 700; line-height: 1.15;
+  color: var(--text); position: relative;
+}
+.auth-headline em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: var(--serif);
+}
+.auth-sub { color: var(--text2); font-size: 15px; line-height: 1.6; position: relative; }
+.auth-stats { display: flex; gap: 32px; position: relative; }
+.auth-stats div { display: flex; flex-direction: column; gap: 2px; }
+.auth-stats strong { font-size: 24px; font-weight: 700; color: var(--accent); }
+.auth-stats span { font-size: 12px; color: var(--text2); }
+.auth-roles { display: flex; flex-direction: column; gap: 12px; position: relative; }
+.role-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm); padding: 14px;
+}
+.role-card span { font-size: 20px; flex-shrink: 0; }
+.role-card strong { font-size: 14px; display: block; margin-bottom: 2px; }
+.role-card p { font-size: 12px; color: var(--text2); margin: 0; }
+.auth-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 20px;
+  background: var(--bg);
+}
+.auth-card {
+  width: 100%; max-width: 400px;
+}
+.auth-card h2 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.auth-desc { color: var(--text2); font-size: 14px; margin-bottom: 24px; }
+.auth-switch { text-align: center; margin-top: 20px; font-size: 14px; color: var(--text2); }
+.auth-switch a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.auth-switch a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-left { display: none; }
+}
