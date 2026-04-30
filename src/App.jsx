@@ -8,8 +8,11 @@ import AdminClasses from './pages/AdminClasses';
 import AdminUsers from './pages/AdminUsers';
 import TutorDashboard from './pages/TutorDashboard';
 import TutorCreateClass from './pages/TutorCreateClass';
+import TutorEnrollments from './pages/TutorEnrollments';
+import TutorAssignments from './pages/TutorAssignments';
 import StudentClasses from './pages/StudentClasses';
 import StudentMyClasses from './pages/StudentMyClasses';
+import StudentAssignments from './pages/StudentAssignments';
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser, userRole } = useAuth();
@@ -38,22 +41,18 @@ function AppRoutes() {
         <Route path="/" element={<HomeRedirect />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-
-        {/* Admin */}
         <Route path="/admin" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/enrollments" element={<ProtectedRoute allowedRoles={['admin']}><AdminEnrollments /></ProtectedRoute>} />
         <Route path="/admin/classes" element={<ProtectedRoute allowedRoles={['admin']}><AdminClasses /></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute allowedRoles={['admin']}><AdminUsers /></ProtectedRoute>} />
-
-        {/* Tutor */}
         <Route path="/tutor" element={<ProtectedRoute allowedRoles={['tutor']}><TutorDashboard /></ProtectedRoute>} />
         <Route path="/tutor/create" element={<ProtectedRoute allowedRoles={['tutor']}><TutorCreateClass /></ProtectedRoute>} />
         <Route path="/tutor/class/:classId" element={<ProtectedRoute allowedRoles={['tutor']}><TutorCreateClass /></ProtectedRoute>} />
-
-        {/* Student */}
+        <Route path="/tutor/enrollments" element={<ProtectedRoute allowedRoles={['tutor']}><TutorEnrollments /></ProtectedRoute>} />
+        <Route path="/tutor/assignments" element={<ProtectedRoute allowedRoles={['tutor']}><TutorAssignments /></ProtectedRoute>} />
         <Route path="/student" element={<ProtectedRoute allowedRoles={['student']}><StudentClasses /></ProtectedRoute>} />
         <Route path="/student/my-classes" element={<ProtectedRoute allowedRoles={['student']}><StudentMyClasses /></ProtectedRoute>} />
-
+        <Route path="/student/assignments" element={<ProtectedRoute allowedRoles={['student']}><StudentAssignments /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
