@@ -38,7 +38,10 @@ export default function TutorDashboard() {
           <h1>My Classes</h1>
           <p className="text-muted">Welcome, {userData?.name}</p>
         </div>
-        <Link to="/tutor/create" className="btn btn-primary">+ Create Class</Link>
+        <div className="flex gap-2">
+          <Link to="/tutor/enrollments" className="btn btn-outline">👥 Manage Students</Link>
+          <Link to="/tutor/create" className="btn btn-primary">+ Create Class</Link>
+        </div>
       </div>
 
       {classes.length === 0
@@ -54,16 +57,23 @@ export default function TutorDashboard() {
                 <div className="flex-between" style={{ marginBottom: 10 }}>
                   <span className="badge" style={{ background: 'rgba(99,102,241,0.15)', color: 'var(--accent)' }}>{c.subject}</span>
                   <div className="flex gap-2">
-                    <button className="btn btn-outline btn-sm" onClick={() => navigate(`/tutor/class/${c.id}`)}>Edit</button>
-                    <button className="btn btn-danger btn-sm" disabled={deleting === c.id} onClick={() => deleteClass(c.id)}>
+                    <button className="btn btn-outline btn-sm"
+                      onClick={(e) => { e.stopPropagation(); navigate(`/tutor/class/${c.id}`); }}>
+                      ✏️ Edit
+                    </button>
+                    <button className="btn btn-danger btn-sm"
+                      disabled={deleting === c.id}
+                      onClick={(e) => { e.stopPropagation(); deleteClass(c.id); }}>
                       {deleting === c.id ? '…' : '🗑'}
                     </button>
                   </div>
                 </div>
                 <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>{c.title}</h3>
-                <p className="text-muted text-sm" style={{ marginBottom: 12 }}>{c.description?.slice(0, 100)}…</p>
+                <p className="text-muted text-sm" style={{ marginBottom: 12 }}>
+                  {c.description?.slice(0, 100)}{c.description?.length > 100 ? '…' : ''}
+                </p>
                 <div className="divider"></div>
-                <div className="flex gap-3 text-sm text-muted">
+                <div className="flex gap-3 text-sm text-muted" style={{ marginTop: 8 }}>
                   <span>📹 {c.videos?.length || 0} videos</span>
                   <span>📡 {c.liveSessions?.length || 0} live sessions</span>
                 </div>
