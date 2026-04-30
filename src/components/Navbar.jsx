@@ -15,7 +15,6 @@ export default function Navbar() {
   };
 
   const isActive = (path) => location.pathname === path ? 'active' : '';
-
   if (!currentUser) return null;
 
   return (
@@ -25,7 +24,6 @@ export default function Navbar() {
           <span className="brand-icon">◈</span>
           <span>EduLearn</span>
         </Link>
-
         <div className="navbar-links">
           {userRole === 'admin' && <>
             <Link className={`nav-link ${isActive('/admin')}`} to="/admin">Dashboard</Link>
@@ -36,13 +34,15 @@ export default function Navbar() {
           {userRole === 'tutor' && <>
             <Link className={`nav-link ${isActive('/tutor')}`} to="/tutor">My Classes</Link>
             <Link className={`nav-link ${isActive('/tutor/create')}`} to="/tutor/create">+ New Class</Link>
+            <Link className={`nav-link ${isActive('/tutor/enrollments')}`} to="/tutor/enrollments">Students</Link>
+            <Link className={`nav-link ${isActive('/tutor/assignments')}`} to="/tutor/assignments">Assignments</Link>
           </>}
           {userRole === 'student' && <>
             <Link className={`nav-link ${isActive('/student')}`} to="/student">Browse Classes</Link>
-            <Link className={`nav-link ${isActive('/student/my-classes')}`} to="/student/my-classes">My Enrollments</Link>
+            <Link className={`nav-link ${isActive('/student/my-classes')}`} to="/student/my-classes">My Classes</Link>
+            <Link className={`nav-link ${isActive('/student/assignments')}`} to="/student/assignments">Assignments</Link>
           </>}
         </div>
-
         <div className="navbar-user">
           <div className="user-info">
             <div className="user-avatar">{userData?.name?.[0]?.toUpperCase() || '?'}</div>
