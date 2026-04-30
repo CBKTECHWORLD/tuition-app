@@ -17,16 +17,26 @@ export default function TutorAssignments() {
 
   useEffect(() => {
     const fetch = async () => {
-      const [classSnap, assignSnap, subSnap] = await Promise.all([
-        getDocs(query(collection(db, 'classes'), where('tutorId', '==', currentUser.uid))),
-        getDocs(query(collection(db, 'assignments'), where('tutorId', '==', currentUser.uid), orderBy('createdAt', 'desc'))),
-        getDocs(query(collection(db, 'submissions'), where('tutorId', '==', currentUser.uid))),
-      ]);
-      const cls = classSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      setClasses(cls);
-      setAssignments(assignSnap.docs.map(d => ({ id: d.id, ...d.data() })));
-      setSubmissions(subSnap.docs.map(d => ({ id: d.id, ...d.data() })));
-      if (cls.length > 0) setForm(f => ({ ...f, classId: cls[0].id }));
+      try {
+        const [classSnap, assignSnap, subSnap] = await Promise.all([
+          getDocs(query(collection(db, 'classes'), where('tutorId', '==', currentUser.uid))),
+          getDocs(query(collection(db, 'assignments'), where('tutorId', '==', currentUser.uid))),
+          getDocs(query(collection(db, 'submissions'), where('tutorId', '==', currentUser.uid))),
+        ]);
+        const cls = classSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        setClasses(cls);
+        const assigns = assignSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        assigns.sort((a, b) => {
+          const aTime = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt || 0);
+          const bTime = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt || 0);
+          return bTime - aTime;
+        });
+        setAssignments(assigns);
+        setSubmissions(subSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        if (cls.length > 0) setForm(f => ({ ...f, classId: cls[0].id }));
+      } catch (err) {
+        console.error('Assignments load error:', err);
+      }
       setLoading(false);
     };
     fetch();

@@ -183,7 +183,7 @@ export default function StudentMyClasses() {
 
       if (approved.length > 0) {
         const classIds = approved.map(e => e.classId);
-        const annSnap = await getDocs(query(collection(db, 'announcements'), orderBy('createdAt', 'desc')));
+        const annSnap = await getDocs(query(collection(db, 'announcements')));
         setAnnouncements(annSnap.docs.map(d => ({ id: d.id, ...d.data() })).filter(a => classIds.includes(a.classId)));
       }
       setLoading(false);

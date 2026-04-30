@@ -59,7 +59,7 @@ export default function TutorEnrollments() {
       const [enrollSnap, classSnap, annSnap] = await Promise.all([
         getDocs(query(collection(db, 'enrollments'), where('tutorId', '==', currentUser.uid))),
         getDocs(query(collection(db, 'classes'), where('tutorId', '==', currentUser.uid))),
-        getDocs(query(collection(db, 'announcements'), where('tutorId', '==', currentUser.uid))),
+        getDocs(query(collection(db, 'announcements'), where('tutorId', '==', currentUser.uid))),  // no orderBy to avoid index requirement
       ]);
       const classMap = {};
       classSnap.docs.forEach(d => { classMap[d.id] = { id: d.id, ...d.data() }; });
