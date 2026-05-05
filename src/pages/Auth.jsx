@@ -40,7 +40,7 @@ export function LoginPage() {
   return (
     <div className="auth-page">
       <div className="auth-left">
-        <div className="auth-brand"><span className="brand-icon">◈</span> EduLearn</div>
+        <div className="auth-brand"><span className="brand-icon">◈</span> Krish Academy</div>
         <h1 className="auth-headline">Learn from the<br /><em>best tutors</em><br />anywhere.</h1>
         <p className="auth-sub">Join thousands of students across India getting quality education online — completely free.</p>
         <div className="auth-stats">
@@ -133,7 +133,7 @@ export function SignupPage() {
   return (
     <div className="auth-page">
       <div className="auth-left">
-        <div className="auth-brand"><span className="brand-icon">◈</span> EduLearn</div>
+        <div className="auth-brand"><span className="brand-icon">◈</span> Krish Academy</div>
         <h1 className="auth-headline">Start your<br /><em>learning journey</em><br />today.</h1>
         <p className="auth-sub">Free access to recorded lessons and live classes. Learn at your own pace, anytime.</p>
         <div className="auth-roles">

@@ -34,8 +34,8 @@ export default function TutorAssignments() {
         setAssignments(assigns);
         setSubmissions(subSnap.docs.map(d => ({ id: d.id, ...d.data() })));
         if (cls.length > 0) setForm(f => ({ ...f, classId: cls[0].id }));
-      } catch (err) {
-        console.error('Assignments load error:', err);
+      } catch(err) {
+        console.error('Error loading:', err);
       }
       setLoading(false);
     };

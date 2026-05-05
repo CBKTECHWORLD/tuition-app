@@ -21,7 +21,7 @@ export default function TutorCreateClass() {
   const navigate = useNavigate();
   const isEdit = !!classId;
 
-  const [form, setForm] = useState({ title: '', subject: 'Mathematics', description: '', grade: '' });
+  const [form, setForm] = useState({ title: '', subject: 'Mathematics', description: '', grade: '', price: '', pricePer: 'month', previewVideoUrl: '', whatYouLearn: '' });
   const [videos, setVideos] = useState([]);
   const [liveSessions, setLiveSessions] = useState([]);
   const [newVideo, setNewVideo] = useState({ title: '', url: '', description: '' });
